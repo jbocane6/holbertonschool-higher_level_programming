@@ -2,9 +2,7 @@
 
 listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *newNode = NULL;
-	listint_t *nodeMin = *head;
-	listint_t *nodeMax = (*head)->next;
+	listint_t *newNode = NULL, *nodeMin = *head, *nodeMax = (*head)->next;
 
 	if (number == NULL)
 		return (NULL);
