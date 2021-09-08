@@ -2,43 +2,25 @@
 
 listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *newNode = NULL, *nodeMin = *head, *nodeMax = (*head)->next;
+	listint_t *newnode = NULL, *headtmp = *head;
 
-	if (number == NULL)
+	newnode = malloc(sizeof(listint_t));
+	if (!newnode)
 		return (NULL);
+	newnode->n = number;
 
-	newNode = malloc(sizeof(listint_t));
-	if (!newNode)
-		return (NULL);
-	newNode->n = number;
-	if (!nodeMin || number <= (*head)->n)
+	if (!headtmp || headtmp->n >= number)
 	{
-		newNode->next = nodeMin;
-		*head = newNode;
-		return (newNode);
+		newnode->next = headtmp;
+		*head = newnode;
+		return (newnode);
 	}
-	if (!nodeMax && nodeMin)
-	{
-		nodeMin->next = newNode;
-		newNode->next = NULL;
-		return (newNode);
-	}
-	while (nodeMin && nodeMax->next)
-	{
-		if (nodeMin->n <= number && nodeMax->n >= number)
-		{
-			newNode->next = nodeMax;
-			nodeMin->next = newNode;
-			return (newNode);
-		}
-		nodeMin = nodeMin->next;
-		nodeMax = nodeMax->next;
-	}
-	if (!nodeMax->next)
-	{
-		nodeMax->next = newNode;
-		newNode->next = NULL;
-		return (newNode);
-	}
-	return (newNode);
+
+	while (headtmp && headtmp->next && headtmp->next->n < number)
+		headtmp = headtmp->next;
+
+	newnode->next = headtmp->next;
+	headtmp->next = newnode;
+
+	return (newnode);
 }
