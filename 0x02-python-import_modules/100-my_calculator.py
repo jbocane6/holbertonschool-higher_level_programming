@@ -2,9 +2,9 @@
 if __name__ == "__main__":
     from sys import argv
     from calculator_1 import add, sub, mul, div
-    count = len(argv)
+    params = len(argv)
 
-    if count != 4:
+    if params != 4:
         print("Usage: {} <a> <operator> <b>".format(argv[0]))
         exit(1)
 
@@ -12,34 +12,34 @@ if __name__ == "__main__":
     num2 = int(argv[3])
     op = argv[2]
 
-    def not_found():
+    def other():
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
 
-    def my_add():
-        total = add(num1, num2)
-        print("{:d} + {:d} = {:d}".format(num1, num2, total))
-        return total
+    def add1():
+        result = add(num1, num2)
+        print("{:d} + {:d} = {:d}".format(num1, num2, result))
+        return result
 
-    def my_sub():
-        total = sub(num1, num2)
-        print("{:d} - {:d} = {:d}".format(num1, num2, total))
-        return total
+    def sub1():
+        result = sub(num1, num2)
+        print("{:d} - {:d} = {:d}".format(num1, num2, result))
+        return result
 
-    def my_mul():
-        total = mul(num1, num2)
-        print("{:d} * {:d} = {:d}".format(num1, num2, total))
-        return total
+    def mul1():
+        result = mul(num1, num2)
+        print("{:d} * {:d} = {:d}".format(num1, num2, result))
+        return result
 
-    def my_div():
-        total = div(num1, num2)
-        print("{:d} / {:d} = {:d}".format(num1, num2, total))
-        return total
+    def div1():
+        result = div(num1, num2)
+        print("{:d} / {:d} = {:d}".format(num1, num2, result))
+        return result
 
     options = {
-        "+": my_add,
-        "-": my_sub,
-        "*": my_mul,
-        "/": my_div
+        "+": add1,
+        "-": sub1,
+        "*": mul1,
+        "/": div1
     }
-    options.get(op, not_found)()
+    options.get(op, other)()
