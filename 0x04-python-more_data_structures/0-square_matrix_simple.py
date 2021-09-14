@@ -1,9 +1,4 @@
 #!/usr/bin/python3
-def square(number):
-    return number ** 2
-
-new_matrix = []
 def square_matrix_simple(matrix=[]):
-    for i in range(len(matrix)):
-        new_matrix.append(list(map(square, matrix[i])))
-    return new_matrix
+    return [list(map(lambda n: n**2, inner_list)) for inner_list in matrix]
+"""Python can return a for loop"""
