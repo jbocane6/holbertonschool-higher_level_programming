@@ -2,4 +2,3 @@
 def multiply_list_map(my_list=[], number=0):
     new_list = my_list[:]
     return list(map(lambda n: n*number, new_list))
-"""n is the iterable value of the list"""
