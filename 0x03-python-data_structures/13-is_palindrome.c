@@ -23,9 +23,9 @@ int is_palindrome(listint_t **head)
 		array[i] = temp2->n;
 		temp2 = temp2->next;
 	}
-	for (j = 0, len; j < len; j++, len--)
+	for (j = 0, i = len; j < i; j++, i--)
 	{
-		if (array[len] != array[j])
+		if (array[i] != array[j])
 			return (0);
 	}
 	return (1);
