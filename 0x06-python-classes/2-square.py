@@ -7,8 +7,7 @@ class Square:
     """Square class.
 
     Attributes:
-            __size (int): The size of the square."""
-
+        __size (int): The size of the square."""
     def __init__(self, size = 0):
         """Constructor of Square object with a size arg.
 
@@ -18,6 +17,7 @@ class Square:
             TypeError: Size must be an integer.
             ValueError: if size is less than 0.
         """
+
         if type(size) != int:
             raise TypeError("size must be an integer")
         if size < 0:
