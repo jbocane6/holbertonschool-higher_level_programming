@@ -12,6 +12,7 @@ class Square:
         self.__size = size
 
     def area(self):
+        """area: returns the square's area"""
         return self.__size ** 2
 
     @property
