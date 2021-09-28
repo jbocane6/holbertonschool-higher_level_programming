@@ -37,12 +37,9 @@ class Square:
 
     def my_print(self):
         """Prints a square of #'s"""
-        if self.__size == 0:
+        if self.__size is 0:
             """if self.__size == 0 prints a new line"""
             print()
         """Moves into the rows"""
         for i in range(self.__size):
-            """Moves into the columns"""
-            for j in range(self.__size):
-                print("#",end="")
-            print()
+            print("#" * self.__size)
