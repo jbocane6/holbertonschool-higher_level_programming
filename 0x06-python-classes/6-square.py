@@ -58,7 +58,7 @@ class Square:
 
     def my_print(self):
         """Prints a square of #'s"""
-        if self.__size != 0:
+        if self.__size > 0:
             """if self.__size != 0 prints a new line"""
             for row in range(self.__position[1]):
                 print("")
