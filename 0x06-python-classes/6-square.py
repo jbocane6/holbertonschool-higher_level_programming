@@ -61,10 +61,10 @@ class Square:
         if self.__size != 0:
             """if self.__size != 0 prints a new line"""
             for row in range(self.__position[1]):
-                print()
+                print("")
             """Prints a new square made by spaces and #"""
             for col in range(self.__size):
                 print("{}{}".format(" " * self.__position[0],
                                     "#" * self.__size))
         else:
-            print()
+            print("")
