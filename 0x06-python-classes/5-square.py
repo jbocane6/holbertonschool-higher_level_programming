@@ -44,4 +44,4 @@ class Square:
             """Moves into the columns"""
             for j in range(self.__size):
                 print("#",end="")
-            print("")
+            print()
