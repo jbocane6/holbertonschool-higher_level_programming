@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""101-square
-Returns a class Square that defines a square"""
+"""6-square
+Return a class Square that defines a square"""
 
 
 class Square:
@@ -58,14 +58,14 @@ class Square:
 
     def __str__(self):
         """Stores a square of #'s and then return it as a string to method print"""
-        string = ""
+        printstr = ""
         if self.__size != 0:
             """if self.__size != 0 stores a new line"""
             for i in range(self.__position[1]):
-                string += "\n"
+                printstr += "\n"
             for j in range(self.__size):
                 """Stores a new square made by spaces and #"""
-                string += " " * self.__position[0] + "#" * self.__size
+                printstr += " " * self.__position[0] + "#" * self.__size
                 if j < self.__size - 1:
-                    string += "\n"
-        return string
+                    printstr += "\n"
+        return printstr
