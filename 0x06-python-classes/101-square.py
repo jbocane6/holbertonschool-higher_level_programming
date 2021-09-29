@@ -67,5 +67,5 @@ class Square:
                 """Stores a new square made by spaces and #"""
                 str += " " * self.__position[0] + "#" * self.__size
                 if j < self.__size - 1:
-                    str += "\n" 
+                    str += "\n"
         return str
