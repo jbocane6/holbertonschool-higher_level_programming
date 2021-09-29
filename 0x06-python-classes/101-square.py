@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """101-square
-Write a class Square that defines a square"""
+Returns a class Square that defines a square"""
 
 
 class Square:
