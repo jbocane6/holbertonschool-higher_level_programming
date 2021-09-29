@@ -58,10 +58,11 @@ class Square:
 
     def my_print(self):
         """Prints a square of #'s"""
-        if self.__size > 0:
+        if self.__size != 0:
             """if self.__size != 0 prints a new line"""
-            for row in range(self.__position[1]):
-                print("")
+            if self.__position[1] > 0:
+                for row in range(self.__position[1]):
+                    print("")
             """Prints a new square made by spaces and #"""
             for col in range(self.__size):
                 print("{}{}".format(" " * self.__position[0],
