@@ -52,20 +52,6 @@ class Square:
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
-    def __str__(self):
-        """Stores a square of #'s and then return it as a string to method print"""
-        printstr = ""
-        if self.__size != 0:
-            """if self.__size != 0 stores a new line"""
-            for i in range(self.__position[1]):
-                printstr += "\n"
-            for j in range(self.__size):
-                """Stores a new square made by spaces and #"""
-                printstr += " " * self.__position[0] + "#" * self.__size
-                if j < self.__size - 1:
-                    printstr += "\n"
-        return printstr
-
     def area(self):
         """area: returns the square's area"""
         return self.__size ** 2
