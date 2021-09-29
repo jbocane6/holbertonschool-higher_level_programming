@@ -54,8 +54,7 @@ class Square:
 
     def __str__(self):
         """Stores a square of #'s and then return it as a string to method print"""
-        printstr = ""
-        return printstr
+        pass
 
     def area(self):
         """area: returns the square's area"""
