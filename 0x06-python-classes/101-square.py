@@ -58,14 +58,14 @@ class Square:
 
     def __str__(self):
         """Stores a square of #'s and then return it as a string to method print"""
-        printstr = ""
+        string = ""
         if self.__size != 0:
             """if self.__size != 0 stores a new line"""
             for i in range(self.__position[1]):
-                printstr += "\n"
+                string += "\n"
             for j in range(self.__size):
                 """Stores a new square made by spaces and #"""
-                printstr += " " * self.__position[0] + "#" * self.__size
+                string += " " * self.__position[0] + "#" * self.__size
                 if j < self.__size - 1:
-                    printstr += "\n"
-        return printstr
+                    string += "\n"
+        return string
