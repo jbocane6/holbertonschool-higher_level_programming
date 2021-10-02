@@ -46,6 +46,13 @@ class Rectangle:
             return 0
         return self.__width * 2 + self.__height * 2
 
+    def __repr__(self):
+        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
+
+    def __del__(self):
+        Rectangle.number_of_instances -= 1
+        print("Bye rectangle...")
+
     def __str__(self):
         """Stores a square of #'s and then return it as a string"""
         printstr = ""
@@ -55,14 +62,7 @@ class Rectangle:
 
         for i in range(self.__height):
             """Stores a new square made by spaces and #"""
-            printstr += Rectangle.print_symbol * self.__width
+            printstr += str(self.print_symbol) * self.__width
             if i is not self.__height - 1:
                 printstr += "\n"
         return printstr
-
-    def __repr__(self):
-        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
-
-    def __del__(self):
-        Rectangle.number_of_instances -= 1
-        print("Bye rectangle...")
