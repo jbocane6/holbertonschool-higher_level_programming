@@ -8,8 +8,8 @@ max_integer = __import__('6-max_integer').max_integer
 class TestMaxInteger(unittest.TestCase):
     """Test cases for function max_integer"""
 
-    def test_base_cases(self):
-        """Tests for base cases"""
+    def test_common_cases(self):
+        """Common cases"""
         self.assertEqual(max_integer([]), None)
         self.assertEqual(max_integer([100, 85, -92, 40]), 100)
         self.assertEqual(max_integer([35, 162, -4, 50]), 162)
@@ -19,12 +19,12 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_integer([15, 7]), 15)
 
     def test_doc(self):
-        """Tests for doc cases"""
+        """Doc cases"""
         self.assertTrue(len(max_integer.__doc__) > 0)
         self.assertTrue(len(__import__('6-max_integer').__doc__) > 0)
 
     def test_style(self):
-        """Tests for style cases"""
+        """Style cases"""
         fd = os.popen('head -1 5-text_indentation.py')
         self.assertEqual(fd.read(), '#!/usr/bin/python3\n')
         fd.close()
@@ -38,6 +38,6 @@ class TestMaxInteger(unittest.TestCase):
         fd.close()
 
     def test_types(self):
-        """Tests for type cases"""
+        """Type cases"""
         self.assertRaises(TypeError, max_integer, None)
         self.assertRaises(TypeError, max_integer, 1234)
