@@ -1,0 +1,130 @@
+===========================
+ ``3-say_my_name`` test
+===========================
+
+Next, we're gonna test the function ``say_my_name``.
+
+Import
+======
+
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Strings
+=======
+
+``say_my_name()`` function that prints ``My name is <first name> <last name>``
+
+::
+
+    >>> say_my_name("John", "Smith")
+    My name is John Smith
+
+    >>> say_my_name("Walter", "White")
+    My name is Walter White
+
+    >>> say_my_name("Bob")
+    My name is Bob 
+
+    >>> say_my_name("", "Sparrow")
+    My name is  Sparrow
+
+    >>> say_my_name("")
+    My name is  
+
+first_name and last_name must be strings.
+
+::
+
+    >>> say_my_name(None, "Smith")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name("Walter", [])
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+    >>> say_my_name(0, "Sparrow")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name([[]], "Betty")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name("Betty", float('inf'))
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+    >>> say_my_name("Betty", float('nan'))
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+    >>> say_my_name("Juan", {'Holberton': "School"})
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+Miscelaneous
+============
+
+We have to input the correct number of arguments.
+
+::
+
+    >>> say_my_name()
+    Traceback (most recent call last):
+        ...
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+
+Documentation and style
+=======================
+
+Looking for correct documentation.
+
+::
+
+    >>> len(__import__("3-say_my_name").__doc__) > 8
+    True
+
+    >>> len(__import__("3-say_my_name").say_my_name.__doc__) > 8
+    True
+
+Looking for correct pep8 style.
+
+::
+
+    >>> import os
+    >>> os.system("pep8 3-say_my_name.py")
+    0
+
+Checking shebang.
+The shebang line in any script determines the script's ability 
+to be executed like a standalone executable without typing python 
+beforehand in the terminal or when double clicking it in a file manager 
+(when configured properly).
+
+::
+
+    >>> os.popen('head -1 3-say_my_name.py').read()
+    '#!/usr/bin/python3\n'
+
+Looking for the correct tests file path.
+
+::
+
+    >>> os.popen('ls tests/3-say_my_name.txt').read()
+    'tests/3-say_my_name.txt\n'
+
+Checking if there is a newline at end of module.
+
+::
+
+    >>> os.popen('tail -1 3-say_my_name.py | cat -e').read()[-1]
+    '\n'

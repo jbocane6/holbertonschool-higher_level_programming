@@ -1,0 +1,141 @@
+=========================
+ ``0-add_integer`` test
+=========================
+
+Next, we're gonna test the function ``add_integer``.
+
+Import
+======
+
+>>> add_integer = __import__('0-add_integer').add_integer
+
+Numbers
+=======
+
+``add_integer()`` is a function that adds 2 integers and
+returns the result.
+
+
+::
+
+    >>> add_integer(1, 2)
+    3
+
+    >>> add_integer(100, -2)
+    98
+
+    >>> add_integer(2)
+    100
+
+    >>> add_integer(-2, -12)
+    -14
+
+When we input a floating values, it will be casted as integer.
+
+::
+
+    >>> add_integer(100.3, -2)
+    98
+
+    >>> add_integer(2.9, 12.7)
+    14
+
+When we input other numeric values than the described above, exception will be raised.
+
+::
+
+    >>> add_integer(2j, 12)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+    >>> add_integer(2, float('inf'))
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+Non-Numbers
+===========
+
+If we input a non-number type, (as str), an exception will be raised.
+
+::
+
+    >>> add_integer(4, "School")
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+    >>> add_integer(2, ())
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+    >>> add_integer(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+        ...
+    ValueError: cannot convert float NaN to integer
+
+
+Miscelaneous
+============
+
+We have to input minimum 1 number of arguments.
+
+::
+
+    >>> add_integer()
+    Traceback (most recent call last):
+        ...
+    TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Documentation and style
+=======================
+
+Looking for correct documentation.
+
+::
+
+    >>> len(__import__("0-add_integer").__doc__) > 0
+    True
+
+    >>> len(__import__("0-add_integer").add_integer.__doc__) > 0
+    True
+
+Looking for correct pep8 style.
+
+::
+
+    >>> import os
+    >>> os.system("pep8 0-add_integer.py")
+    0
+
+Checking shebang.
+The shebang line in any script determines the script's ability 
+to be executed like a standalone executable without typing python 
+beforehand in the terminal or when double clicking it in a file manager 
+(when configured properly).
+
+::
+
+    >>> os.popen('head -1 0-add_integer.py').read()
+    '#!/usr/bin/python3\n'
+
+Looking for the correct tests file path.
+
+::
+
+    >>> os.popen('ls tests/0-add_integer.txt').read()
+    'tests/0-add_integer.txt\n'
+
+Checking if there is a newline at end of module.
+
+::
+
+    >>> os.popen('tail -1 0-add_integer.py | cat -e').read()[-1]
+    '\n'

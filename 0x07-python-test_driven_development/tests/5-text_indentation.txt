@@ -1,0 +1,197 @@
+===========================
+ ``5-text_indentation`` test
+0B===========================
+
+Next, we're gonna test the function ``text_indentation``.
+
+Import
+======
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Strings
+=======
+
+``text_indentation()`` prints a text with 2 new lines after each of
+ these characters: ., ? and :
+
+::
+
+    >>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+    ... Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
+    ... Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: \
+    ... Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. \
+    ... Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum \
+    ... rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo \
+    ... stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum \
+    ... cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio \
+    ... beatiorem! Iam ruinas videres""")
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <BLANKLINE>
+    Quonam modo?
+    <BLANKLINE>
+    Utrum igitur tibi litteram videor an totas paginas commovere?
+    <BLANKLINE>
+    Non autem hoc:
+    <BLANKLINE>
+    igitur ne illud quidem.
+    <BLANKLINE>
+    Fortasse id optimum, sed ubi illud:
+    <BLANKLINE>
+    Plus semper voluptatis?
+    <BLANKLINE>
+    Teneo, inquit, finem illi videri nihil dolere.
+    <BLANKLINE>
+    Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.
+    <BLANKLINE>
+    Si id dicis, vicimus.
+    <BLANKLINE>
+    Inde sermone vario sex illa a Dipylo stadia confecimus.
+    <BLANKLINE>
+    Sin aliud quid voles, postea.
+    <BLANKLINE>
+    Quae animi affectio suum cuique tribuens atque hanc, quam dico.
+    <BLANKLINE>
+    Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
+
+    >>> text_indentation(".    ?\t:")
+    .
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+
+    >>> text_indentation("           ")
+    
+
+    >>> text_indentation("  \n  .  ?  \n  .   :    . \n  \n  ?    ")
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+
+    >>> text_indentation("Hello\n\nMs.")
+    Hello
+    <BLANKLINE>
+    Ms.
+    <BLANKLINE>
+
+    >>> text_indentation("Holberton School")
+    Holberton School
+
+    >>> text_indentation("Hola        como  \n  estas ?  \r MUY bien")
+    Hola        como
+    estas ?
+    <BLANKLINE>
+    <BLANKLINE>
+    MUY bien
+
+    >>> text_indentation("    Will the \n\n Real Slim Shady \n\n \
+    ... Please stand up?    ")
+    Will the
+    <BLANKLINE>
+    Real Slim Shady
+    <BLANKLINE>
+    Please stand up?
+    <BLANKLINE>
+
+    >>> text_indentation("To be, or not to be, that is the question:: \
+    ... Whether 'tis nobler in the mind to suffer")
+    To be, or not to be, that is the question:
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    Whether 'tis nobler in the mind to suffer
+
+    >>> text_indentation("")
+    
+
+Checking text type exception.
+
+::
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+    >>> text_indentation(123456)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+    >>> text_indentation(["Hello", "World"])
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+Miscelaneous
+============
+
+We have to input the correct number of arguments.
+
+::
+
+    >>> text_indentation()
+    Traceback (most recent call last):
+        ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+Documentation and style
+=======================
+
+Looking for correct documentation.
+
+::
+
+    >>> len(__import__("5-text_indentation").__doc__) > 8
+    True
+
+    >>> len(__import__("5-text_indentation").text_indentation.__doc__) > 8
+    True
+
+Looking for correct pep8 style.
+
+::
+
+    >>> import os
+    >>> os.system('pep8 5-text_indentation.py')
+    0
+
+Checking shebang.
+The shebang line in any script determines the script's ability 
+to be executed like a standalone executable without typing python 
+beforehand in the terminal or when double clicking it in a file manager 
+(when configured properly).
+
+::
+
+    >>> os.popen('head -1 5-text_indentation.py').read()
+    '#!/usr/bin/python3\n'
+
+Looking for the correct tests file path.
+
+::
+
+    >>> os.popen('ls tests/5-text_indentation.txt').read()
+    'tests/5-text_indentation.txt\n'
+
+Checking if there is a newline at end of module.
+
+::
+
+    >>> os.popen('tail -1 5-text_indentation.py | cat -e').read()[-1]
+    '\n'
