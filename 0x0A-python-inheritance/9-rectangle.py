@@ -14,10 +14,10 @@ class Rectangle(BaseGeometry):
             height (int): Must be positive integer.
         self.__size = size
         """
-        self.__width = width
-        self.__height = height
         self.integer_validator("width", width)
         self.integer_validator("height", height)
+        self.__width = width
+        self.__height = height
 
     def area(self):
         """Calculates the area of the rectangle.
