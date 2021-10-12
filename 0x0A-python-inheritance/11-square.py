@@ -24,4 +24,4 @@ class Square(Rectangle):
 
     def __str__(self):
         """Return the message [Square] <width>/<height>"""
-        return "[Square] {:d}/{:d}".format(self.__width, self.__height)
+        return "[Square] {:d}/{:d}".format(self.__size, self.__size)
