@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#ignore compiled files
+*-main.py
+*main.py
+
+#ignore backup files
+*.*~
