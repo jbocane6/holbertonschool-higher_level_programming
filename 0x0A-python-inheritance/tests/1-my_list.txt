@@ -14,7 +14,8 @@ Integers
 ========
 
 ``my_list`` class MyList that inherits from ``list`` with a public instance method
-def print_sorted(self): that prints the list, but sorted (ascending sort).
+
+``def print_sorted(self)``: that prints the list, but sorted (ascending sort).
 
 ::
 
@@ -102,9 +103,9 @@ original list.
     >>> mylist2
     [25, 3, 253]
 
-    >>> mylist4.print_sorted()
+    >>> mylist3.print_sorted()
     [3, 25, 25, 25, 253]
-    >>> mylist4
+    >>> mylist3
     [25, 25, 25, 3, 253]
 
     >>> mylist4.print_sorted()
