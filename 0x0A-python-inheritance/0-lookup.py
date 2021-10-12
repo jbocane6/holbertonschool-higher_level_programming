@@ -11,4 +11,4 @@ and methods of an object.
     Return:
         A list object.
     """
-    print("{}".format(dir(obj)))
+    return(dir(obj))
