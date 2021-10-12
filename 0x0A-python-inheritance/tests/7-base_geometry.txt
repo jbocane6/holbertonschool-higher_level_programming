@@ -1,0 +1,150 @@
+===========================
+ ``7-base_geometry`` test
+===========================
+
+Next, we're gonna test the function ``BaseGeometry``.
+
+Import
+======
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> import os
+
+Integers
+========
+
+``BaseGeometry`` is a class with two methods: area and integer_validator.
+
+::
+
+    >>> bg = BaseGeometry()
+    
+
+Checking correct class of ``BaseGeometry``.
+
+::
+
+  Instance is of type ``BaseGeometry``.
+    >>> type(bg) == BaseGeometry
+    True
+
+  Instance is an instance of ``BaseGeometry``
+    >>> isinstance(bg, BaseGeometry)
+    True
+
+Checking if integer_validator method.
+
+::
+
+    >>> bg.integer_validator("my_int", 12)
+
+Checking exceptions on integer_validator method.
+
+::
+
+  TypeError - non integer values:
+    >>> bg.integer_validator("my_int", "string")
+    Traceback (most recent call last):
+        ...
+    TypeError: my_int must be an integer
+
+    >>> bg.integer_validator("my_int", True)
+    Traceback (most recent call last):
+        ...
+    TypeError: my_int must be an integer
+
+    >>> bg.integer_validator("my_int", [2, 5, 3])
+    Traceback (most recent call last):
+        ...
+    TypeError: my_int must be an integer
+
+    >>> bg.integer_validator("my_int", {2, 5, 3})
+    Traceback (most recent call last):
+        ...
+    TypeError: my_int must be an integer
+
+    >>> bg.integer_validator("my_int", 25.3)
+    Traceback (most recent call last):
+        ...
+    TypeError: my_int must be an integer
+
+  ValueError - negative integers:
+    >>> bg.integer_validator("my_int", 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: my_int must be greater than 0
+
+    >>> bg.integer_validator("my_int", -25)
+    Traceback (most recent call last):
+        ...
+    ValueError: my_int must be greater than 0
+
+Checking exception on area method.
+
+::
+
+    >>> bg.area()
+    Traceback (most recent call last):
+        ...
+    Exception: area() is not implemented
+
+Miscelaneous
+============
+
+We have to input the correct number of arguments.
+
+::
+
+    >>> bg.integer_validator("my_int")
+    Traceback (most recent call last):
+        ...
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+    >>> bg.integer_validator("my_int", 3, "string")
+    Traceback (most recent call last):
+        ...
+    TypeError: integer_validator() takes 3 positional arguments but 4 were given
+
+Documentation and style
+=======================
+
+Looking for correct documentation.
+
+::
+
+    >>> len(__import__("7-base_geometry").__doc__) > 8
+    True
+
+    >>> len(__import__("7-base_geometry").BaseGeometry.__doc__) > 8
+    True
+
+    >>> len(__import__("7-base_geometry").BaseGeometry.area.__doc__) > 8
+    True
+
+    >>> len(__import__("7-base_geometry").BaseGeometry.integer_validator.__doc__) > 8
+    True
+
+Checking shebang.
+The shebang line in any script determines the script's ability 
+to be executed like a standalone executable without typing python 
+beforehand in the terminal or when double clicking it in a file manager 
+(when configured properly).
+
+::
+
+    >>> os.popen('head -1 7-base_geometry.py').read()
+    '#!/usr/bin/python3\n'
+
+Looking for the correct tests file path.
+
+::
+
+    >>> os.popen('ls tests/7-base_geometry.txt').read()
+    'tests/7-base_geometry.txt\n'
+
+Checking if there is a newline at end of module.
+
+::
+
+    >>> os.popen('tail -1 7-base_geometry.py | cat -e').read()[-1]
+    '\n'
