@@ -1,0 +1,163 @@
+===========================
+ ``1-my_list`` test
+===========================
+
+Next, we're gonna test the function ``MyList``.
+
+Import
+======
+
+>>> my_list = __import__('1-my_list').MyList
+>>> import os
+
+Integers
+========
+
+``my_list`` class MyList that inherits from ``list`` with a public instance method
+def print_sorted(self): that prints the list, but sorted (ascending sort).
+
+::
+
+    >>> mylist = my_list()
+    >>> mylist2 = my_list()
+    >>> mylist3 = my_list()
+    >>> mylist4 = my_list()
+
+    >>> mylist
+    []
+    >>> mylist2
+    []
+    >>> mylist3
+    []
+    >>> mylist4
+    []
+
+Checking correct class of ``my_list`` subclass.
+
+::
+
+  Instance is of type ``my_list``.
+    >>> type(mylist) == my_list
+    True
+
+  Instance is an instance of ``my_list``
+    >>> isinstance(mylist, my_list)
+    True
+
+  Instance is a subclass of ``list``
+    >>> issubclass(type(mylist), list)
+    True
+
+Checking correct sorting of empty list.
+
+::
+
+    >>> mylist.print_sorted()
+    []
+
+Looking if method to create lists working.
+
+::
+
+  Positive and negative integers:
+    >>> mylist.append(25)
+    >>> mylist.append(3)
+    >>> mylist.append(-11)
+    >>> mylist
+    [25, 3, -11]
+
+  Positive integers:
+    >>> mylist2.append(25)
+    >>> mylist2.append(3)
+    >>> mylist2.append(253)
+    >>> mylist2
+    [25, 3, 253]
+
+  Repeating Integers:
+    >>> mylist3.append(25)
+    >>> mylist3.append(25)
+    >>> mylist3.append(25)
+    >>> mylist3.append(3)
+    >>> mylist3.append(253)
+    >>> mylist3
+    [25, 25, 25, 3, 253]
+
+  One value:
+    >>> mylist4.append(253)
+    >>> mylist4
+    [253]
+
+Checking correct sorting method of inherited class without modifying
+original list.
+
+::
+
+    >>> mylist.print_sorted()
+    [-11, 3, 25]
+    >>> mylist
+    [25, 3, -11]
+
+    >>> mylist2.print_sorted()
+    [3, 25, 253]
+    >>> mylist2
+    [25, 3, 253]
+
+    >>> mylist4.print_sorted()
+    [3, 25, 25, 25, 253]
+    >>> mylist4
+    [25, 25, 25, 3, 253]
+
+    >>> mylist4.print_sorted()
+    [253]
+    >>> mylist4
+    [253]
+
+Miscelaneous
+============
+
+We have to input the correct number of arguments.
+
+::
+
+    >>> mylist4.print_sorted([25])
+    Traceback (most recent call last):
+        ...
+    TypeError: print_sorted() takes 1 positional argument but 2 were given
+
+Documentation and style
+=======================
+
+Looking for correct documentation.
+
+::
+
+    >>> len(__import__("1-my_list").__doc__) > 8
+    True
+
+    >>> len(__import__("1-my_list").MyList.__doc__) > 8
+    True
+
+Checking shebang.
+The shebang line in any script determines the script's ability 
+to be executed like a standalone executable without typing python 
+beforehand in the terminal or when double clicking it in a file manager 
+(when configured properly).
+
+::
+
+    >>> os.popen('head -1 1-my_list.py').read()
+    '#!/usr/bin/python3\n'
+
+Looking for the correct tests file path.
+
+::
+
+    >>> os.popen('ls tests/1-my_list.txt').read()
+    'tests/1-my_list.txt\n'
+
+Checking if there is a newline at end of module.
+
+::
+
+    >>> os.popen('tail -1 1-my_list.py | cat -e').read()[-1]
+    '\n'
