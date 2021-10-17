@@ -6,7 +6,7 @@ specified class otherwise False."""
 def is_same_class(obj, a_class):
     """Look if an object is exactly an instance of a specified class.
     Args:
-        a (int): number.
+        obj (int): number.
     Return:
         True: If the object is exactly an instance of the specified class
         False: Otherwise.
