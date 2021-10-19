@@ -20,7 +20,9 @@ class TestRectangle(TestCase):
         """Clean test files."""
         if os.path.exists("Rectangle.json"):
             os.remove("Rectangle.json")
-        
+        if os.path.exists("Rectangle.csv"):
+            os.remove("Rectangle.csv")
+
     def test_instance(self):
         """Test for correct instancing and inheritance of rectangle object."""
         rectangle_1 = Rectangle(10, 12)
@@ -82,18 +84,31 @@ class TestRectangle(TestCase):
     def test_raise_type_errors(self):
         """Test for correct type error output"""
         w_type_error = (
-            (30.2, 1), ("3", 1), (None, 1), (True, 1)
+            (30.2, 1), ("3", 1), (None, 1), (0.2, 1)
         )
         h_type_error = (
-            (1, 30.2), (1, "3"), (1, None), (1, True)
+            (1, 30.2), (1, "3"), (1, None), (1, 0.1)
         )
         x_type_error = (
-            (1, 2, 30.2), (1, 2, "3"), (1, 2, None), (1, 2, True)
+            (1, 2, 30.2), (1, 2, "3"), (1, 2, None), (1, 2, 0.1)
         )
         y_type_error = (
-            (1, 2, 3, 30.2), (1, 2, 3, "3"), (1, 2, 3, None), (1, 2, 3, True)
+            (1, 2, 3, 30.2), (1, 2, 3, "3"), (1, 2, 3, None), (1, 2, 3, 0.1)
         )
 
+        for case in w_type_error:
+            with self.assertRaisesRegex(TypeError, "width must be an integer"):
+                Rectangle(case[0], case[1])
+        for case in h_type_error:
+            with self.assertRaisesRegex(TypeError,
+                                        "height must be an integer"):
+                Rectangle(case[0], case[1])
+        for case in x_type_error:
+            with self.assertRaisesRegex(TypeError, "x must be an integer"):
+                Rectangle(case[0], case[1], case[2])
+        for case in y_type_error:
+            with self.assertRaisesRegex(TypeError, "y must be an integer"):
+                Rectangle(case[0], case[1], case[2], case[3])
 
     def test_raise_value_errors(self):
         """Test for correct value error output"""
@@ -345,6 +360,70 @@ class TestRectangle(TestCase):
             self.assertIsInstance(instance, Rectangle)
             self.assertEqual(instance.__str__(), original.__str__())
 
+    def test_to_file_csv_None(self):
+        """Test for correct output of None list of save_to_file_csv."""
+        Rectangle.save_to_file_csv(None)
+
+        with os.popen('ls {}.csv'.format(str(Rectangle.__name__))) as ls:
+            self.assertEqual(ls.read(), 'Rectangle.csv\n')
+
+        with open(str(Rectangle.__name__) + '.csv',
+                  'r', encoding='utf-8') as f:
+            self.assertEqual(f.read(), '')
+
+    def test_to_file_csv_empty(self):
+        """Test for correct output of empty list of save_to_file_csv."""
+        Rectangle.save_to_file_csv([])
+
+        with os.popen('ls {}.csv'.format(str(Rectangle.__name__))) as ls:
+            self.assertEqual(ls.read(), 'Rectangle.csv\n')
+
+        with open(str(Rectangle.__name__) + '.csv',
+                  'r', encoding='utf-8') as f:
+            self.assertEqual(f.read(), '')
+
+    def test_to_file_csv(self):
+        """Test for correct output of save_to_file_csv"""
+        rc_1 = Rectangle(1, 9, 20, 30, 4)
+        rc_2 = Rectangle(2, 5, 10, 2, 9)
+        rc_list = [rc_1, rc_2]
+        rc_1_dict = rc_1.to_dictionary()
+        rc_2_dict = rc_2.to_dictionary()
+        rc_dicts = [rc_1_dict, rc_2_dict]
+
+        Rectangle.save_to_file_csv(rc_list)
+
+        with os.popen('ls {}.csv'.format(type(rc_1).__name__)) as ls:
+            self.assertEqual(ls.read(), 'Rectangle.csv\n')
+        rec_fields = ["id", "width", "height", "x", "y"]
+
+        orig_str = ",".join(rec_fields) + '\n'
+        for rec in rc_dicts:
+            row = ""
+            for field in rec_fields:
+                row += str(rec[field]) + ','
+            orig_str += row[:-1] + '\n'
+
+        with open(type(rc_1).__name__ + '.csv', 'r', encoding='utf-8') as f:
+            csv_str = f.read()[:]
+
+        self.assertEqual(csv_str, orig_str)
+
+    def test_from_csv_file(self):
+        """Test for correct instance creation from csv file"""
+        rec_1 = Rectangle(1, 9, 20, 30, 4)
+        rec_2 = Rectangle(2, 5, 10, 2, 9)
+        originals = [rec_1, rec_2]
+
+        Rectangle.save_to_file_csv(originals)
+
+        instances = Rectangle.load_from_file_csv()
+
+        for original, instance in zip(instances, originals):
+            self.assertIsInstance(instance, Rectangle)
+            self.assertEqual(instance.__str__(), original.__str__())
+
+
 class TestRectangleDoc(TestCase):
     "Tests documentation and pep8 for Rectangle class"
 
@@ -372,5 +451,9 @@ class TestRectangleDoc(TestCase):
         p8 = pep8.StyleGuide(quiet=False)
 
         res = p8.check_files(['models/rectangle.py'])
+        self.assertEqual(res.total_errors, 0,
+                         "Found code style errors (and warnings).")
+
+        res = p8.check_files(['tests/test_models/test_rectangle.py'])
         self.assertEqual(res.total_errors, 0,
                          "Found code style errors (and warnings).")

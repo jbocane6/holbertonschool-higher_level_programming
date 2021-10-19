@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# -*- coding:utf-8 -*-
 """Unit test for base.py"""
 from unittest import TestCase
 from models.base import Base
@@ -18,6 +19,8 @@ class TestBase(TestCase):
         """Clean test files."""
         if os.path.exists("Base.json"):
             os.remove("Base.json")
+        if os.path.exists("Base.csv"):
+            os.remove("Base.csv")
 
     def test_instance(self):
         """Test for correct instancing of base object."""
@@ -82,7 +85,34 @@ class TestBase(TestCase):
         instances = Base.load_from_file()
         self.assertEqual(instances, [])
 
-    
+    def test_to_file_csv_None(self):
+        """Test for correct output of None list of save_to_file_csv."""
+        Base.save_to_file_csv(None)
+
+        with os.popen('ls {}.csv'.format(str(Base.__name__))) as ls:
+            self.assertEqual(ls.read(), 'Base.csv\n')
+
+        with open(str(Base.__name__) + '.csv', 'r', encoding='utf-8') as f:
+            self.assertEqual(f.read(), '')
+
+    def test_to_file_csv_empty(self):
+        """Test for correct output of empty list of save_to_file_csv."""
+        Base.save_to_file_csv([])
+
+        with os.popen('ls {}.csv'.format(str(Base.__name__))) as ls:
+            self.assertEqual(ls.read(), 'Base.csv\n')
+
+        with open(str(Base.__name__) + '.csv', 'r', encoding='utf-8') as f:
+            self.assertEqual(f.read(), '')
+
+    def test_from_csv_file(self):
+        """Test for correct output from non existent csv file."""
+        Base.save_to_file_csv(None)
+
+        instances = Base.load_from_file()
+        self.assertEqual(instances, [])
+
+
 class TestBaseDoc(TestCase):
     "Tests documentation and pep8 for Base class"
 
@@ -109,5 +139,9 @@ class TestBaseDoc(TestCase):
         p8 = pep8.StyleGuide(quiet=False)
 
         res = p8.check_files(['models/base.py'])
+        self.assertEqual(res.total_errors, 0,
+                         "Found code style errors (and warnings).")
+
+        res = p8.check_files(['tests/test_models/test_base.py'])
         self.assertEqual(res.total_errors, 0,
                          "Found code style errors (and warnings).")
