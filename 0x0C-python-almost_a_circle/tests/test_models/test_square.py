@@ -21,8 +21,6 @@ class TestSquare(TestCase):
         """Clean test files."""
         if os.path.exists("Square.json"):
             os.remove("Square.json")
-        if os.path.exists("Square.csv"):
-            os.remove("Square.csv")
 
     def test_instance(self):
         """Test for correct instancing and inheritance of square object."""
@@ -88,16 +86,6 @@ class TestSquare(TestCase):
         y_type_error = (
             (1, 2, 30.2), (1, 2, "3"), (1, 2, None), (1, 2, True)
         )
-
-        for case in s_type_error:
-            with self.assertRaisesRegex(TypeError, "width must be an integer"):
-                Square(case)
-        for case in x_type_error:
-            with self.assertRaisesRegex(TypeError, "x must be an integer"):
-                Square(case[0], case[1])
-        for case in y_type_error:
-            with self.assertRaisesRegex(TypeError, "y must be an integer"):
-                Square(case[0], case[1], case[2])
 
     def test_raise_value_errors(self):
         """Test for correct value error output"""
@@ -324,69 +312,6 @@ class TestSquare(TestCase):
             self.assertIsInstance(instance, Square)
             self.assertEqual(instance.__str__(), original.__str__())
 
-    def test_to_file_csv_None(self):
-        """Test for correct output of None list of save_to_file_csv."""
-        Square.save_to_file_csv(None)
-
-        with os.popen('ls {}.csv'.format(str(Square.__name__))) as ls:
-            self.assertEqual(ls.read(), 'Square.csv\n')
-
-        with open(str(Square.__name__) + '.csv', 'r', encoding='utf-8') as f:
-            self.assertEqual(f.read(), '')
-
-    def test_to_file_csv_empty(self):
-        """Test for correct output of empty list of save_to_file_csv."""
-        Square.save_to_file_csv([])
-
-        with os.popen('ls {}.csv'.format(str(Square.__name__))) as ls:
-            self.assertEqual(ls.read(), 'Square.csv\n')
-
-        with open(str(Square.__name__) + '.csv', 'r', encoding='utf-8') as f:
-            self.assertEqual(f.read(), '')
-
-    def test_to_file_csv(self):
-        """Test for correct output of save_to_file_csv"""
-        square_1 = Square(1, 2, 5, 3)
-        square_2 = Square(1, 2, 7, 9)
-        square_list = [square_1, square_2]
-        square_1_dict = square_1.to_dictionary()
-        square_2_dict = square_2.to_dictionary()
-        square_dicts = [square_1_dict, square_2_dict]
-
-        Square.save_to_file_csv(square_list)
-
-        with os.popen('ls {}.csv'.format(type(square_1).__name__)) as ls:
-            self.assertEqual(ls.read(), 'Square.csv\n')
-        square_fields = ["id", "size", "x", "y"]
-
-        orig_str = ",".join(square_fields) + '\n'
-        for rec in square_dicts:
-            row = ""
-            for field in square_fields:
-                row += str(rec[field]) + ','
-            orig_str += row[:-1] + '\n'
-
-        with open(type(square_1).__name__ + '.csv',
-                  'r', encoding='utf-8') as f:
-            csv_str = f.read()[:]
-
-        self.assertEqual(csv_str, orig_str)
-
-    def test_from_csv_file(self):
-        """Test for correct instance creation from csv file"""
-        square_1 = Square(1, 2, 5, 3)
-        square_2 = Square(1, 2, 7, 9)
-        originals = [square_1, square_2]
-
-        Square.save_to_file_csv(originals)
-
-        instances = Square.load_from_file_csv()
-
-        for original, instance in zip(instances, originals):
-            self.assertIsInstance(instance, Square)
-            self.assertEqual(instance.__str__(), original.__str__())
-
-
 class TestSquareDoc(TestCase):
     "Tests documentation and pep8 for Square class"
 
@@ -414,9 +339,5 @@ class TestSquareDoc(TestCase):
         p8 = pep8.StyleGuide(quiet=True)
 
         res = p8.check_files(['models/square.py'])
-        self.assertEqual(res.total_errors, 0,
-                         "Found code style errors (and warnings).")
-
-        res = p8.check_files(['tests/test_models/test_square.py'])
         self.assertEqual(res.total_errors, 0,
                          "Found code style errors (and warnings).")
