@@ -18,7 +18,7 @@ class Base():
             self.id = id
         else:
             Base.__nb_objects += 1
-            self.id = self.__nb_objects
+            self.id = Base.__nb_objects
 
     @staticmethod
     def to_json_string(list_dictionaries):
@@ -55,9 +55,8 @@ class Base():
             List: List of the JSON string representation json_string.
         """
         if json_string is None or len(json_string) == 0:
-            return "[]"
-        else:
-            json.loads(json_string)
+            return []
+        return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
