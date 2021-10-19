@@ -3,6 +3,7 @@
 The goal of it is to manage id attribute in all your future classes
 and to avoid duplicating the same code (by extension, same bugs)."""
 import json
+import csv
 
 
 class Base():
@@ -84,5 +85,45 @@ class Base():
             for i in new_dict:
                 list_instances.append(cls.create(**i))
             return list_instances
+        except IOError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serializes in CSV:.
+        Args:
+            list_objs (list): List of objects.
+        """
+        args_rectangle = ["id", "width", "height", "x", "y"]
+        args_square = ["id", "size", "x", "y"]
+
+        with open(cls.__name__ + ".csv", "w", newline='') as f:
+            if list_objs is not None and len(list_objs) != 0:
+                if cls.__name__ == "Rectangle":
+                    new = csv.DictWriter(f, fieldnames=args_rectangle)
+                else:
+                    new = csv.DictWriter(f, fieldnames=args_square)
+                csv_rows = [obj.to_dictionary() for obj in list_objs]
+                new.writeheader()
+                new.writerows(csv_rows)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserializes in CSV:.
+        Returns:
+            list: List of instances of Base.
+        """
+        try:
+            with open(cls.__name__ + ".csv", "r", newline='') as f:
+                new = csv.DictReader(f)
+                dict_base = []
+                for row in new:
+                    row = dict([i, int(value)] for i, value in row.items())
+                    dict_base.append(row)
+
+            instance_ls = []
+            for instance in dict_base:
+                instance_ls.append(cls.create(**instance))
+            return instance_ls
         except IOError:
             return []
