@@ -28,11 +28,13 @@ class Base():
         Return:
             dict: new dictionary.
         """
-        return "[]" if list_dictionaries is None or\
-             len(list_dictionaries) == 0 else json.dumps(list_dictionaries)
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+        else:
+            json.dumps(list_dictionaries)
 
     @classmethod
-    def save_to_file(cls, list_objs): 
+    def save_to_file(cls, list_objs):
         """Writes the JSON string representation of list_objs to a file.
         Args:
             list_objs: List of instances who inherits of Base.
@@ -52,8 +54,10 @@ class Base():
         Return:
             List: List of the JSON string representation json_string.
         """
-        return "[]" if json_string is None or\
-             len(json_string) == 0 else json.loads(json_string)
+        if json_string is None or len(json_string) == 0:
+            return "[]"
+        else:
+            json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
