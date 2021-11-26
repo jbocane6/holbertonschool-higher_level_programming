@@ -76,10 +76,10 @@ UPDATE tb_car SET status='Used' WHERE plate_id = "OIJ651";
 UPDATE tb_car SET status='Used' WHERE plate_id = "FOS023";
 UPDATE tb_car SET status='New' WHERE plate_id = "XGP745";
 
-UPDATE tb_insurance SET date_end="12-05-2023" WHERE insurance_id = "001";
-UPDATE tb_insurance SET date_end="20-06-2023" WHERE insurance_id = "002";
-UPDATE tb_insurance SET date_end="31-03-2023" WHERE insurance_id = "003";
-UPDATE tb_insurance SET date_end="01-06-2023" WHERE insurance_id = "004";
+UPDATE tb_insurance SET date_end="2023-05-12" WHERE insurance_id = "001";
+UPDATE tb_insurance SET date_end="2023-06-20" WHERE insurance_id = "002";
+UPDATE tb_insurance SET date_end="2023-03-31" WHERE insurance_id = "003";
+UPDATE tb_insurance SET date_end="2023-06-01" WHERE insurance_id = "004";
 
 -- Delete Values
 DELETE FROM tb_insurance WHERE insurance_id = 004;
@@ -97,10 +97,11 @@ INNER JOIN tb_employee ON tb_customer.id_employee = tb_employee.id;
 SELECT tb_car.plate_id, tb_car.status, tb_customer.name AS owner FROM tb_car
 INNER JOIN tb_customer ON tb_car.id_customer = tb_customer.id;
 
-SELECT tb_insurance.insurance_id, tb_customer.id AS owner, tb_car.plate_id AS plate, tb_insurance.date_start, tb_insurance.date_end, tb_employee.id AS seller FROM tb_insurance
-INNER JOIN tb_customer ON tb_insurance.id_customer = tb_customer.id,
-INNER JOIN tb_car ON tb_insurance.plate_car = tb_car.plate_id,
-INNER JOIN tb_employee ON tb_insurance.id_employee = tb_employee.id;
+SELECT tb_insurance.insurance_id, tb_customer.id AS owner, tb_car.plate_id
+AS plate, tb_insurance.date_start, tb_insurance.date_end, tb_employee.id AS seller FROM tb_insurance
+INNER JOIN tb_customer ON tb_insurance.id_customer = owner,
+INNER JOIN tb_car ON tb_insurance.plate_car = plate,
+INNER JOIN tb_employee ON tb_insurance.id_employee = seller;
 
 -- Show unique
 SELECT * FROM tb_employee WHERE id = 10268551;
@@ -108,7 +109,7 @@ SELECT * FROM tb_employee WHERE id = 10268551;
 SELECT tb_customer.id, tb_customer.name, tb_customer.city, tb_employee.name AS seller
 FROM tb_customer
 INNER JOIN tb_employee ON tb_customer.id_employee = tb_employee.id
-WHERE tb_customer.name = "MONICA DIAZ";
+WHERE tb_customer.name = "ANGELY DIAZ";
 
 SELECT tb_car.plate_id, tb_car.status, tb_customer.name AS owner FROM tb_car
 INNER JOIN tb_customer ON tb_car.id_customer = tb_customer.id
