@@ -97,11 +97,9 @@ INNER JOIN tb_employee ON tb_customer.id_employee = tb_employee.id;
 SELECT tb_car.plate_id, tb_car.status, tb_customer.name AS owner FROM tb_car
 INNER JOIN tb_customer ON tb_car.id_customer = tb_customer.id;
 
-SELECT tb_insurance.insurance_id, tb_customer.id AS owner, tb_car.plate_id
-AS plate, tb_insurance.date_start, tb_insurance.date_end, tb_employee.id AS seller FROM tb_insurance
-INNER JOIN tb_customer ON tb_insurance.id_customer = owner,
-INNER JOIN tb_car ON tb_insurance.plate_car = plate,
-INNER JOIN tb_employee ON tb_insurance.id_employee = seller;
+SELECT tb_insurance.insurance_id, tb_customer.name AS owner, tb_insurance.plate_car
+AS plate, tb_insurance.date_start, tb_insurance.date_end, tb_insurance.id_employee AS seller FROM tb_insurance
+INNER JOIN tb_customer ON tb_insurance.id_customer = tb_customer.id;
 
 -- Show unique
 SELECT * FROM tb_employee WHERE id = 10268551;
