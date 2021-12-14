@@ -10,10 +10,10 @@ const argc = argv.length - 2;
 if (argc < 2) {
   console.log(0);
 } else {
-  const int_array = [];
+  const intArray = [];
   for (let i = 0; i < argc; i++) {
-    int_array.push(parseInt(argv[i]));
+    intArray.push(parseInt(argv[i]));
   }
-  int_array.sort((a, b) => a - b);
-  console.log(int_array[argc - 2]);
+  intArray.sort((a, b) => a - b);
+  console.log(intArray[argc - 2]);
 }
