@@ -5,7 +5,8 @@
 // If the number of arguments is 1, print 0.
 // You must use console.log(...) to print all output.
 // You are not allowed to use var.
-const { argv } = require('process');
+let { argv } = require('process');
+argv = argv.slice(2);
 const argc = argv.length - 2;
 if (argc < 2) {
   console.log(0);
