@@ -7,8 +7,8 @@
 // You are not allowed to use var.
 let { argv } = require('process');
 argv = argv.slice(2);
-const argc = argv.length - 2;
-if (argc < 2) {
+const argc = argv.length;
+if (argc === 0 || argc === 1) {
   console.log(0);
 } else {
   const intArray = [];
