@@ -6,3 +6,13 @@
 // A key is a number of occurrences.
 // A value is the list of user ids.
 // Print the new dictionary at the end.
+const dict = require('./101-data').dict;
+const dict2 = {};
+for (const key in dict) {
+  if (dict2[dict[key]] === undefined) {
+    dict2[dict[key]] = [key];
+  } else {
+    dict2[dict[key]].push(key);
+  }
+}
+console.log(dict2);
