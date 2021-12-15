@@ -7,4 +7,5 @@ multipled by the index in the list.
 Print both the initial list and the new list. */
 const list = require('./100-data').list;
 const map = list.map((val, idx) => val * idx);
-console.log(list + '\n' + map);
+console.log(list);
+console.log(map);
