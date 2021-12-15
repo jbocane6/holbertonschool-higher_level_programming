@@ -6,3 +6,18 @@
 // Initialize the instance attribute height with the value of h.
 // If w or h is equal to 0 or not a positive integer, create an empty object.
 // Create an instance method called print() that prints the rectangle using the character X.
+class Rectangle {
+  constructor (w, h) {
+    if (w > 0 && h > 0) {
+      this.width = w;
+      this.height = h;
+    }
+  }
+
+  print () {
+    const value = 'X';
+    const row = Array.apply([], Array(this.height));
+    row.forEach(() => console.log(value.repeat(this.width)));
+  }
+}
+module.exports = Rectangle;
