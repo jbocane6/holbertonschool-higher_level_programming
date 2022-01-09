@@ -10,8 +10,7 @@ def find_peak(list_of_integers):
     """
     if (type(list_of_integers) != list or len(list_of_integers) < 1):
         return None
-    size = len(list_of_integers)
-    return peak_cmp(list_of_integers, size)
+    return peak_cmp(list_of_integers, len(list_of_integers))
 
 
 def peak_cmp(list_of_integers, size):
@@ -21,10 +20,8 @@ def peak_cmp(list_of_integers, size):
 
     mid_size = int(size / 2)
     peak = list_of_integers[mid_size]
-    peak_left = list_of_integers[mid_size - 1]
-    peak_right = list_of_integers[mid_size + 1]
 
-    if peak_left < peak > peak_right:
+    if list_of_integers[mid_size - 1] < peak > list_of_integers[mid_size + 1]:
         return peak
     else:
         return max(peak_cmp(list_of_integers[:mid_size], mid_size), peak_cmp(
