@@ -30,8 +30,6 @@ def peak_cmp(list_of_integers, size):
 
     if peak_left < peak > peak_right:
         return peak
-    elif peak_left > peak:
-        return peak_cmp(list_left, mid_size)
     else:
         return max(peak_cmp(list_right, len(list_right)), peak_cmp(
                                             list_left, mid_size))
