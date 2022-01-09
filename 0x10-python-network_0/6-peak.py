@@ -23,11 +23,9 @@ def peak_cmp(list_of_integers, size):
     peak = list_of_integers[mid_size]
     peak_left = list_of_integers[mid_size - 1]
     peak_right = list_of_integers[mid_size + 1]
-    list_left = list_of_integers[:mid_size]
-    list_right = list_of_integers[mid_size + 1:]
 
     if peak_left < peak > peak_right:
         return peak
     else:
-        return max(peak_cmp(list_left, mid_size), peak_cmp(
-                            list_right, len(list_right)))
+        return max(peak_cmp(list_of_integers[:mid_size], mid_size), peak_cmp(
+                            list_of_integers[mid_size + 1:], len(list_right)))
