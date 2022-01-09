@@ -30,4 +30,5 @@ def peak_cmp(list_of_integers, size):
     elif (peak_left > peak):
         return peak_cmp(int_list[:mid_size], mid_size)
     else:
-        return peak_cmp(list_of_integers[mid_size + 1:], len(list_of_integers[mid_size + 1:]))
+        list_tmp = list_of_integers[mid_size + 1:]
+        return peak_cmp(list_tmp, len(list_tmp))
