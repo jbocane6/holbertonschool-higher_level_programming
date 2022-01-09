@@ -8,9 +8,9 @@ def find_peak(list_of_integers):
     """
     Function that finds a peak in a list of unsorted integers.
     """
-    size = len(list_of_integers)
-    if (type(list_of_integers) != list or size < 1):
+    if (type(list_of_integers) != list or len(list_of_integers) < 1):
         return None
+    size = len(list_of_integers)
     return peak_cmp(list_of_integers, size)
 
 
