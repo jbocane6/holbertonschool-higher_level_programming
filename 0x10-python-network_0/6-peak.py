@@ -16,9 +16,7 @@ def find_peak(list_of_integers):
 
 def peak_cmp(list_of_integers, size):
     """Use recursion to find peak"""
-    if size == 1:
-        return list_of_integers[0]
-    if size == 2:
+    if size == 1 or size == 2:
         return max(list_of_integers)
 
     mid_size = int(size / 2)
