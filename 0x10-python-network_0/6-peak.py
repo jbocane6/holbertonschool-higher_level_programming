@@ -13,13 +13,14 @@ def find_peak(list_of_integers):
         return None
     return peak_cmp(list_of_integers, size)
 
+
 def peak_cmp(list_of_integers, size):
     """Use recursion to find peak"""
     if size == 1:
         return list_of_integers[0]
     if size == 2:
         return max(list_of_integers)
-    
+
     mid_size = int(size / 2)
     peak = list_of_integers[mid_size]
     peak_left = list_of_integers[mid_size - 1]
