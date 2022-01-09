@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from urllib import request
+import urllib.request
 """
 Python script that fetches https://intranet.hbtn.io/status
 You must use the package urllib
@@ -10,7 +10,7 @@ You must use a with statement
 """
 
 if __name__ == "__main__":
-    with request.urlopen('https://intranet.hbtn.io/status') as f:
+    with urllib.request.urlopen('https://intranet.hbtn.io/status') as f:
         response = f.read()
         print("Body response:")
         print("\t- type: {}".format(type(response)))
