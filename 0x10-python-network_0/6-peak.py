@@ -28,4 +28,5 @@ def peak_cmp(list_of_integers, size):
         return peak
     else:
         return max(peak_cmp(list_of_integers[:mid_size], mid_size), peak_cmp(
-                            list_of_integers[mid_size + 1:], len(list_right)))
+                            list_of_integers[mid_size + 1:],
+                            len(list_of_integers[mid_size + 1:])))
