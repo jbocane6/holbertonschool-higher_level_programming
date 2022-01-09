@@ -22,6 +22,7 @@
 - [0x08-python-more_classes](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x08-python-more_classes)
 - [0x09-python-everything_is_object](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x09-python-everything_is_object)
 - [0x10-python-network_0](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x10-python-network_0)
+- [0x11-python-network_1](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x11-python-network_1)
 - [0x12-javascript-warm_up](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x12-javascript-warm_up)
 - [0x13-javascript_objects_scopes_closures](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x13-javascript_objects_scopes_closures)
 - [0x0A-python-inheritance](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x0A-python-inheritance)
