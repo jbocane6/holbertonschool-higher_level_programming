@@ -7,11 +7,11 @@ The body of the response must be displayed
 like the following example (tabulation before -)
 You must use a with statement
 """
-import urllib.request
+from urllib import request
 
 
 if __name__ == "__main__":
-    with urllib.request.urlopen('https://intranet.hbtn.io/status') as response:
+    with request.urlopen('https://intranet.hbtn.io/status') as response:
         html = response.read()
         print("Body html:")
         print("\t- type: {}".format(type(html)))
