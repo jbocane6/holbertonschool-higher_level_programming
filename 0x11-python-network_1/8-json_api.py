@@ -23,7 +23,7 @@ if __name__ == "__main__":
     except IndexError:
         pass
     data = {'q': q}
-    r = requests.post('http://0.0.0.0:5000/search_user', q)
+    r = requests.post('http://0.0.0.0:5000/search_user', data)
     try:
         r = r.json()
         if r:
