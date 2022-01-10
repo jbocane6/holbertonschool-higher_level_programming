@@ -17,10 +17,11 @@ import sys
 
 
 if __name__ == "__main__":
+    q = ""
     try:
         q = sys.argv[1]
     except IndexError:
-        q = ""
+        pass
     data = {'q': q}
     r = requests.post('http://0.0.0.0:5000/search_user', q)
     try:
