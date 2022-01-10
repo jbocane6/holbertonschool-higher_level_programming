@@ -18,7 +18,7 @@ import sys
 if __name__ == "__main__":
     username = sys.argv[1]
     token = sys.argv[2]
-    r = requests.post('https://api.github.com/user', auth=(username, token))
+    r = requests.get('https://api.github.com/user', auth=(username, token))
     try:
         r = r.json()
         print(r['id'])
