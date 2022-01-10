@@ -20,10 +20,11 @@ if __name__ == "__main__":
     try:
         q = sys.argv[1]
     except IndexError:
-        q= ""
+        q = ""
     data = {'q': q}
+    r = requests.post('http://0.0.0.0:5000/search_user', q)
     try:
-        r = requests.post('http://0.0.0.0:5000/search_user', q).json()
+        r = r.json()
         if r:
             print("[{}] {}".format(r["id"], r["name"]))
         else:
