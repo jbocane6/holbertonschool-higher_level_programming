@@ -17,7 +17,6 @@ import sys
 if __name__ == "__main__":
     email = sys.argv[2]
 
-    data = urllib.parse.urlencode({'email': email})
-    data = data.encode('utf-8')
-    r = requests.get(sys.argv[1], data)
-    print("{}".format(r.read().decode('utf-8')))
+    data = {'email': email}
+    r = requests.post(sys.argv[1], data)
+    print("{}".format(r.text))
