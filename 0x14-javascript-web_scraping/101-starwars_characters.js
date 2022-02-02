@@ -17,14 +17,21 @@ request(url, (error, response, values) => {
   } else {
     // Store the results
     const results = JSON.parse(values).characters;
-    for (let i = 0; i < results.length; i++) {
-      request(results[i], async (error, response, values) => {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log(JSON.parse(values).name);
-        }
-      });
-    }
+    showResults(results, 0);
   }
 });
+
+function showResults (results, index) {
+  if (index === results.length) {
+    return;
+  }
+  request(results[index], async (error, response, values) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(JSON.parse(values).name);
+      index += 1;
+      showResults(results, index);
+    }
+  });
+}
