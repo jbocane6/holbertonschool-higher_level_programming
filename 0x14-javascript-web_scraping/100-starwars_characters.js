@@ -17,7 +17,7 @@ request(url, (error, response, values) => {
     // Store the results
     const results = JSON.parse(values).characters;
     for (const result of results) {
-        //as results contains a list of urls we request each one of them
+      // as results contains a list of urls we request each one of them
       request(result, (error, response, values) => {
         if (error) {
           console.log(error);
