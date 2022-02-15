@@ -26,6 +26,7 @@
 - [0x12-javascript-warm_up](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x12-javascript-warm_up)
 - [0x13-javascript_objects_scopes_closures](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x13-javascript_objects_scopes_closures)
 - [0x14-javascript-web_scraping](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x14-javascript-web_scraping)
+- [0x15-javascript-web_jquery](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x15-javascript-web_jquery)
 - [0x0A-python-inheritance](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x0A-python-inheritance)
 - [0x0B-python-input_output](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x0B-python-input_output)
 - [0x0C-python-almost_a_circle](https://github.com/jbocane6/holbertonschool-higher_level_programming/tree/master/0x0C-python-almost_a_circle)
